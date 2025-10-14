@@ -1,4 +1,7 @@
 package org.example.movieflix.response;
 
-public record CategoriaResponse() {
+import lombok.Builder;
+
+@Builder
+public record CategoriaResponse(Long id, String nome) {
 }

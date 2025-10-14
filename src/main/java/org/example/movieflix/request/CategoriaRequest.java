@@ -1,4 +1,4 @@
 package org.example.movieflix.request;
 
-public record CategoriaRequest() {
+public record CategoriaRequest(String nome) {
 }

@@ -1,4 +1,7 @@
 package org.example.movieflix.request;
 
-public record StreamingRequest() {
+import lombok.Builder;
+
+@Builder
+public record StreamingRequest(String nome) {
 }

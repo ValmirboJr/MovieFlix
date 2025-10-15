@@ -1,9 +1,9 @@
 package org.example.movieflix.repository;
 
-import jdk.jfr.Registered;
 import org.example.movieflix.entity.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@Registered
+@Repository
 public interface CategoriaRepository extends JpaRepository<Categoria,Long> {
 }

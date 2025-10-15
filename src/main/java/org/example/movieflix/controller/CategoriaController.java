@@ -19,7 +19,7 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<List<CategoriaResponse>> BuscarTodas() {
         return ResponseEntity.ok(categoriaService.BuscarTodas()
                 .stream().map(CategoriaMapper::toCategoriaResponse)
@@ -28,8 +28,7 @@ public class CategoriaController {
 
     @PostMapping("/salvar")
     public ResponseEntity<CategoriaResponse> salvar(@RequestBody CategoriaRequest categoriaRequest) {
-        Categoria newcategoria = CategoriaMapper.toCategoria(categoriaRequest);
-        Categoria savedcategoria = categoriaService.salvar(newcategoria);
+        Categoria savedcategoria = categoriaService.salvar(CategoriaMapper.toCategoria(categoriaRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(CategoriaMapper.toCategoriaResponse(savedcategoria));
     }
 

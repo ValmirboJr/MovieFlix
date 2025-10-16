@@ -1,4 +1,7 @@
 package org.example.movieflix.response;
 
-public record LoginResponse() {
+import lombok.Builder;
+
+@Builder
+public record LoginResponse(String token) {
 }

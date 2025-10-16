@@ -1,4 +1,5 @@
 package org.example.movieflix.request;
 
-public record LoginRequest() {
+public record LoginRequest(String email, String senha) {
+
 }

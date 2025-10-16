@@ -1,7 +1,7 @@
 package org.example.movieflix.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.example.movieflix.entity.Categoria;
+
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.example.movieflix.service;
 
-import org.example.movieflix.entity.Categoria;
+
 import org.example.movieflix.entity.Streaming;
 import org.example.movieflix.repository.StreamingRepository;
 import org.springframework.beans.factory.annotation.Autowired;

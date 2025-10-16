@@ -1,4 +1,7 @@
 package org.example.movieflix.config;
 
-public enum JWTUserData {
+import lombok.Builder;
+
+@Builder
+public record JWTUserData(Long id, String nome, String email) {
 }

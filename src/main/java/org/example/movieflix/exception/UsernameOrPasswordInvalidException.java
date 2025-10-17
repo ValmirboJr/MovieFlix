@@ -1,7 +1,7 @@
 package org.example.movieflix.exception;
 
-public class UsernameOrPasswordException extends RuntimeException {
-    public UsernameOrPasswordException(String message) {
+public class UsernameOrPasswordInvalidException extends RuntimeException {
+    public UsernameOrPasswordInvalidException(String message) {
         super(message);
     }
 }

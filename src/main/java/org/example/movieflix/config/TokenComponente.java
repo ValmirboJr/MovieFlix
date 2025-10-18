@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.example.movieflix.entity.Usuario;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -22,7 +23,7 @@ public class TokenComponente {
 
         return JWT.create()
                 .withSubject(usuario.getEmail())
-                .withClaim("usuarioI", usuario.getId())
+                .withClaim("usuarioId", usuario.getId())
                 .withClaim("nome", usuario.getNome())
                 .withExpiresAt(Instant.now().plusSeconds(86400))
                 .withIssuedAt(Instant.now())

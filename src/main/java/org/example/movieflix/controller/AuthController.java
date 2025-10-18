@@ -10,7 +10,6 @@ import org.example.movieflix.request.UsuarioRequest;
 import org.example.movieflix.response.LoginResponse;
 import org.example.movieflix.response.UsuarioResponse;
 import org.example.movieflix.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,14 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TokenComponente tokenService;
-
+    private final TokenComponente tokenService;
 
     @PostMapping("/save")
     public ResponseEntity<UsuarioResponse> registrar(@RequestBody UsuarioRequest usuarioRequest){
@@ -50,10 +46,8 @@ public class AuthController {
         Usuario usuario = (Usuario) authenticado.getPrincipal();
         String token = tokenService.gerartoken(usuario);
         return ResponseEntity.ok(new LoginResponse(token));
-
         }catch (BadCredentialsException e){
             throw new UsernameOrPasswordInvalidException("Usuario ou senha invalido.");
         }
-
     }
 }

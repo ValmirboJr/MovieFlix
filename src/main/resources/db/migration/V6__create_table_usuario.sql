@@ -1,6 +1,6 @@
 CREATE TABLE usuario (
     id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
+    nome varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL
+    senha varchar(255) NOT NULL
 );

@@ -1,5 +1,6 @@
 package org.example.movieflix.controller;
 
+import jakarta.validation.Valid;
 import org.example.movieflix.entity.Categoria;
 import org.example.movieflix.entity.Streaming;
 import org.example.movieflix.mapper.CategoriaMapper;
@@ -31,7 +32,7 @@ public class StreamingController {
     }
 
     @PostMapping("/salvar")
-    public ResponseEntity<StreamingResponse> salvar(@RequestBody StreamingRequest streamingRequest) {
+    public ResponseEntity<StreamingResponse> salvar(@Valid @RequestBody StreamingRequest streamingRequest) {
         Streaming saveStreaming = streamingService.salvar(StreamingMapper.toStreaming(streamingRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(StreamingMapper.toStreamingResponse(saveStreaming));
     }

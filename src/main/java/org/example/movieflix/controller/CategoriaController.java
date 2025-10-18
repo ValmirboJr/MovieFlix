@@ -1,5 +1,6 @@
 package org.example.movieflix.controller;
 
+import jakarta.validation.Valid;
 import org.example.movieflix.entity.Categoria;
 import org.example.movieflix.mapper.CategoriaMapper;
 import org.example.movieflix.request.CategoriaRequest;
@@ -27,7 +28,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/salvar")
-    public ResponseEntity<CategoriaResponse> salvar(@RequestBody CategoriaRequest categoriaRequest) {
+    public ResponseEntity<CategoriaResponse> salvar(@Valid @RequestBody CategoriaRequest categoriaRequest) {
         Categoria savedcategoria = categoriaService.salvar(CategoriaMapper.toCategoria(categoriaRequest));
         return ResponseEntity.status(HttpStatus.CREATED).body(CategoriaMapper.toCategoriaResponse(savedcategoria));
     }

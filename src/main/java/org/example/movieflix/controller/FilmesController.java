@@ -1,5 +1,12 @@
 package org.example.movieflix.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.example.movieflix.entity.Filmes;
 import org.example.movieflix.mapper.FilmesMapper;
 import org.example.movieflix.request.FilmesRequest;
@@ -15,13 +22,18 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/filmes")
+@Tag(name = "Filmes", description = "Recurso responsavel pelo gerenciamento dos filmes")
 public class FilmesController {
 
     @Autowired
     private FilmesService filmesService;
 
+    @Operation(summary = "Salvar Filme", description = "Metodo responsavel por salvar um novo filme")
+    @ApiResponse(responseCode = "201", description = "Filme salvo com sucesso",
+    content = @Content(schema = @Schema(implementation = FilmesResponse.class)))
+
     @PostMapping("/salvar")
-    public ResponseEntity<FilmesResponse> salvar(@RequestBody FilmesRequest filmesRequest) {
+    public ResponseEntity<FilmesResponse> salvar(@Valid @RequestBody FilmesRequest filmesRequest) {
         Filmes salvo = filmesService.salvar(FilmesMapper.toFilmes(filmesRequest));
         return ResponseEntity.ok(FilmesMapper.toFilmesResponse(salvo));
     }
@@ -39,7 +51,7 @@ public class FilmesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FilmesResponse> atualizar(@PathVariable Long id, @RequestBody FilmesRequest filmesRequest) {
+    public ResponseEntity<FilmesResponse> atualizar(@PathVariable Long id, @Valid @RequestBody FilmesRequest filmesRequest) {
         return filmesService.atualizar(id,FilmesMapper.toFilmes(filmesRequest))
                 .map(filmes -> ResponseEntity.ok(FilmesMapper.toFilmesResponse(filmes)))
                 .orElse(ResponseEntity.notFound().build());
